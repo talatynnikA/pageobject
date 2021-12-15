@@ -42,6 +42,30 @@ class BasePage{
         await driver.quit;
     }
 
+    async MoveToСurrencies(){
+        await driver.sleep(5000);
+        await driver.findElement(By.linkText("Валюты")).click()
+    }
+
+    async AddElementToFavorite(){
+        var expectedElement = driver.findElement(By.xpath("/html/body/div[1]/main/div/div[1]/section/div/div[4]/div/div[1]/div/div[2]")).getText()
+        await driver.findElement(By.css(".bookmark_link:nth-child(6) .icon_star")).click()
+        {
+            const element = await driver.findElement(By.linkText("Избранное"))
+            await driver.actions({ bridge: true }).moveToElement(element).perform()
+        }
+        return expectedElement
+    }
+
+    async CheckFavorite(){
+        await driver.findElement(By.linkText("Избранное")).click()
+        var realvalue = driver.findElement(By.xpath("/html/body/div[1]/main/div/div[1]/section/div/div[2]/div/div[1]/div/div[2]")).getText()
+        await assert.equal(expectedValue, realvalue);
+    }
+    async RmFromFav(){
+        await driver.findElement(By.css(".card:nth-child(2) .bookmark_link .icon")).click()
+
+    }
 
 }
 

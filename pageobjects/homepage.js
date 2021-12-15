@@ -17,5 +17,18 @@ class HomePage extends BasePage{
         this.checkValue(expectedValue, realvalue)
     }
 
+    GoToCurrencies(){
+        this.MoveToСurrencies()
+    }
+    AddToFavorite(){
+        this.AddElementToFavorite()
+    }
+
+    async CheckFavorite() {
+        super.CheckFavorite();
+    }
+    async RemoveFromFavorite(){
+        this.RmFromFav()
+    }
 }
 module.exports = new HomePage();

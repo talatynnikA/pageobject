@@ -17,8 +17,6 @@ describe('This is POM', function(){
             var  password = "V$#C8BZC6Nn*5jr"
             var  expectedValue = "HK50"
              var realvalue
-             var url = "https://my.liteforex.com/ru?openPopup=%2Fru%2Flogin%2Fpopup%3FreturnUrl%3D%252Fru%252F";
-            baseurl = "https://my.liteforex.com/ru?openPopup=%2Fru%2Flogin%2Fpopup%3FreturnUrl%3D%252Fru%252F";
             var baseurl = "https://my.liteforex.com/ru?openPopup=%2Fru%2Flogin%2Fpopup%3FreturnUrl%3D%252Fru%252F"
             await homepage.goToPage(baseurl)
                   await homepage.sleep();
@@ -28,6 +26,25 @@ describe('This is POM', function(){
             await homepage.sleep();
             await homepage.CheckFounded(expectedValue, realvalue)
 
+        }
+        finally {
+            await homepage.quit();
+        }
+    })
+    it('Add GBPUSD to favorites', async function(){
+        try {
+            var  login = "shkolar.neymeka@bk.ru"
+            var  password = "V$#C8BZC6Nn*5jr"
+            var baseurl = "https://my.liteforex.com/ru?openPopup=%2Fru%2Flogin%2Fpopup%3FreturnUrl%3D%252Fru%252F"
+
+            await homepage.goToPage(baseurl)
+            await homepage.sleep();
+            await homepage.LogIn(login, password)
+            await homepage.sleep();
+            await homepage.GoToCurrencies();
+            await homepage.AddToFavorite();
+            await homepage.CheckFavorite();
+            await homepage.RemoveFromFavorite();
         }
         finally {
             await homepage.quit();
